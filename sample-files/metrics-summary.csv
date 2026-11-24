@@ -1,0 +1,5 @@
+metric,q3_baseline,q4_target,owner
+active_docs_per_team,18,45,Faizan Ali
+avg_doc_load_ms,210,120,Devon Brooks
+shared_docs_ratio,0.42,0.75,Maya Lin
+onboarding_completion_pct,88,96,Sofia Patel

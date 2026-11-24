@@ -1,0 +1,10 @@
+Ajaia Docs — Release Notes (v0.1)
+
+Highlights:
+- Rich-text editing with headings, bold, italic, underline, and lists
+- Import .txt, .md, and .docx drafts directly into the workspace
+- Role-based sharing with Owner, Editor, and Viewer enforcement
+
+Next Up:
+- Document version history and snapshot restore
+- Export to Markdown and print-ready PDF

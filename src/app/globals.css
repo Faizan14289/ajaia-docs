@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f8fa;
+  --foreground: #111827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Editorial rich-text typography for Tiptap editor canvas */
+.ajaia-editor {
+  outline: none;
+  min-height: 520px;
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.72;
+  word-break: break-word;
+}
+
+.ajaia-editor > *:first-child {
+  margin-top: 0;
+}
+
+.ajaia-editor h1 {
+  font-size: 1.95rem;
+  font-weight: 700;
+  line-height: 1.24;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ajaia-editor h2 {
+  font-size: 1.4rem;
+  font-weight: 650;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  color: #111827;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.ajaia-editor h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #1f2937;
+  margin-top: 1.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.ajaia-editor p {
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.ajaia-editor strong,
+.ajaia-editor b {
+  font-weight: 650;
+  color: #0f172a;
+}
+
+.ajaia-editor u {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+.ajaia-editor ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.ajaia-editor ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.ajaia-editor li {
+  margin: 0.3rem 0;
+}
+
+.ajaia-editor li > p {
+  margin: 0.15rem 0;
+}
+
+.ajaia-editor blockquote {
+  border-left: 3px solid #4f46e5;
+  background: #f8fafc;
+  padding: 0.65rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #334155;
+  font-style: italic;
+}
+
+.ajaia-editor code {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.875em;
+  background: #f1f5f9;
+  color: #3730a3;
+  padding: 0.12rem 0.38rem;
+  border-radius: 0.3rem;
+  border: 1px solid #e2e8f0;
+}
+
+.ajaia-editor pre {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.875rem;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.6rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ajaia-editor pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.ajaia-editor hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+.ajaia-editor a {
+  color: #4f46e5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ajaia-editor p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}
