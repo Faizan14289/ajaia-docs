@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  serverExternalPackages: ["pg", "mammoth", "sanitize-html"],
+  serverExternalPackages: ["pg", "mammoth"],
   turbopack: {
     rules: {
       "*.css": {

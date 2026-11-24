@@ -1,7 +1,8 @@
 import path from "node:path";
-import mammoth from "mammoth";
-import { marked } from "marked";
+import { FileValidationError } from "./db/errors";
 import { sanitizeRichHtml } from "./sanitize";
+
+export { FileValidationError };
 
 export const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
 export const MAX_FILE_SIZE_LABEL = "5 MB";
@@ -18,15 +19,6 @@ export const ATTACHMENT_EXTENSIONS = [
   ".docx",
   ".csv",
 ] as const;
-
-export class FileValidationError extends Error {
-  status: number;
-  constructor(message: string, status = 400) {
-    super(message);
-    this.name = "FileValidationError";
-    this.status = status;
-  }
-}
 
 export function getFileExtension(fileName: string): string {
   return path.extname(fileName || "").toLowerCase();
@@ -108,10 +100,12 @@ export async function parseImportedFile(params: {
   if (ext === ".txt") {
     rawHtml = plainTextToHtml(buffer.toString("utf-8"));
   } else if (ext === ".md") {
+    const { marked } = await import("marked");
     const markdownText = buffer.toString("utf-8");
     rawHtml = await marked.parse(markdownText, { gfm: true, breaks: false });
   } else if (ext === ".docx") {
     try {
+      const mammoth = (await import("mammoth")).default;
       const result = await mammoth.convertToHtml({ buffer });
       rawHtml = result.value;
       if (result.messages?.length) {

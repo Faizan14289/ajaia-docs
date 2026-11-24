@@ -4,7 +4,7 @@ import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { ForbiddenError, NotFoundError } from "../db/errors";
 import { FileWorkspaceRepository } from "../db/file-repository";
-import { extractPlainTextExcerpt } from "../sanitize";
+import { extractPlainTextExcerpt, sanitizeRichHtml } from "../sanitize";
 
 const tempDirs: string[] = [];
 
@@ -57,6 +57,23 @@ describe("WorkspaceRepository — persistence & rich-text sanitization", () => {
       "<h1>API &amp; Persistence</h1><p>Fast &amp; safe editing.</p>"
     );
     expect(excerpt).toBe("API & Persistence Fast & safe editing.");
+  });
+
+  it("strips dangerous XSS payloads while preserving safe rich-text formatting and https links", () => {
+    const dirty =
+      '<h1 onclick="evil()">Title</h1><script>alert(1)</script><style>body{display:none}</style><img src=x onerror=alert(2) /><a href="javascript:alert(3)">Bad</a><a href="https://ajaia.io">Good</a>';
+    const clean = sanitizeRichHtml(dirty);
+
+    expect(clean).toContain("<h1>Title</h1>");
+    expect(clean).not.toContain("onclick");
+    expect(clean).not.toContain("<script>");
+    expect(clean).not.toContain("alert(1)");
+    expect(clean).not.toContain("<style>");
+    expect(clean).not.toContain("onerror");
+    expect(clean).not.toContain("javascript:");
+    expect(clean).toContain(
+      '<a href="https://ajaia.io" target="_blank" rel="noopener noreferrer">Good</a>'
+    );
   });
 });
 

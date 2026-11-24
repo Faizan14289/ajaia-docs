@@ -27,3 +27,10 @@ export class NotFoundError extends AppError {
     this.name = "NotFoundError";
   }
 }
+
+export class FileValidationError extends AppError {
+  constructor(message: string, status = 400) {
+    super(message, status);
+    this.name = "FileValidationError";
+  }
+}

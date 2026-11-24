@@ -20,7 +20,8 @@
 
 ## Live Product URL & Test Credentials
 
-- **Live URL:** `<PASTE_YOUR_VERCEL_URL_HERE>`
+- **Live URL:** https://ajaia-docs-murex-pi.vercel.app
+- **GitHub Repository:** https://github.com/Faizan14289/ajaia-docs
 - **Walkthrough Video:** See `WALKTHROUGH_VIDEO_URL.txt`
 - **No sign-up required:** Use the **Account Switcher** in the top-right header to switch between seeded team accounts with one click:
   - **Faizan Ali** (`faizan@ajaia.io`) — Default active user; owns 2 docs, Editor on 1 shared doc, Viewer on 1 shared doc

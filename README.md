@@ -8,8 +8,8 @@ Ajaia Docs focuses on a high-craft core product slice: clean rich-text editing, 
 
 ## Live Deployment
 
-- **Live URL:** `<PASTE_YOUR_VERCEL_URL_HERE>` *(see deployment steps below)*
-- **Health Check:** `<PASTE_YOUR_VERCEL_URL_HERE>/api/health`
+- **Live URL:** https://ajaia-docs-murex-pi.vercel.app
+- **Health Check:** https://ajaia-docs-murex-pi.vercel.app/api/health
 
 ---
 

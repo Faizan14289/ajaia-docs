@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 import { AppError } from "./db/errors";
-import { FileValidationError } from "./file-parser";
 
 export function handleApiError(error: unknown): NextResponse {
-  if (error instanceof AppError || error instanceof FileValidationError) {
+  if (error instanceof AppError) {
     return NextResponse.json({ error: error.message }, { status: error.status });
   }
 

@@ -1,3 +1,4 @@
+import os from "node:os";
 import path from "node:path";
 import type {
   DocumentAttachmentFull,
@@ -68,17 +69,34 @@ const globalForRepo = globalThis as unknown as {
   __ajaiaWorkspaceRepo?: WorkspaceRepository;
 };
 
+function resolvePostgresUrl(): string | undefined {
+  const candidates = [
+    process.env.DATABASE_URL,
+    process.env.POSTGRES_URL,
+    process.env.POSTGRES_PRISMA_URL,
+    process.env.STORAGE_POSTGRES_URL,
+    process.env.NEON_DATABASE_URL,
+  ];
+  for (const val of candidates) {
+    if (val && val.trim().length > 0) return val.trim();
+  }
+  return undefined;
+}
+
 export function getRepository(): WorkspaceRepository {
   if (globalForRepo.__ajaiaWorkspaceRepo) {
     return globalForRepo.__ajaiaWorkspaceRepo;
   }
 
-  const databaseUrl = process.env.DATABASE_URL?.trim();
+  const databaseUrl = resolvePostgresUrl();
+  const defaultLocalFile = process.env.VERCEL
+    ? path.join(os.tmpdir(), "ajaia-docs-store.json")
+    : path.join(process.cwd(), "data", "ajaia-docs-store.json");
+
   const repo: WorkspaceRepository = databaseUrl
     ? new PostgresWorkspaceRepository(databaseUrl)
     : new FileWorkspaceRepository(
-        process.env.LOCAL_DATA_FILE?.trim() ||
-          path.join(process.cwd(), "data", "ajaia-docs-store.json")
+        process.env.LOCAL_DATA_FILE?.trim() || defaultLocalFile
       );
 
   globalForRepo.__ajaiaWorkspaceRepo = repo;

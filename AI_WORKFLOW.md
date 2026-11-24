@@ -21,6 +21,7 @@ Practical AI usage means treating generated code and framework defaults skeptica
 4. **Caught and fixed real UI bugs via live browser inspection:** Automated visual verification against the running production server revealed two subtle issues that static tests missed:
    - The View-Only banner placed raw text nodes and `<strong>` tags directly inside an `inline-flex` container, wrapping words into awkward vertical columns. Wrapping the copy in a single `<span>` beside the icon fixed the layout cleanly.
    - `extractPlainTextExcerpt()` initially stripped HTML tags without inserting spaces between closing block tags (`</h1><p>`) and left `&amp;` HTML entities un-decoded on dashboard cards. I updated `src/lib/sanitize.ts` to add block spacing, decode common entities, and added a dedicated Vitest regression test.
+5. **Diagnosed and eliminated a Vercel Serverless Node-version crash:** Live verification of the deployed `/api/health` endpoint caught a `500` module-load failure caused by `sanitize-html@2.18.2` requiring `node >= 22.12.0` for CJS `require(esm)` on `htmlparser2@12`. I replaced it with a zero-dependency deterministic allowlist sanitizer (`src/lib/sanitize.ts`) backed by explicit XSS regression tests, decoupled `mammoth`/`marked` via dynamic imports, and added multi-variable Postgres env resolution (`DATABASE_URL` / `POSTGRES_URL`) plus a `/tmp` fallback on Vercel.
 
 ---
 

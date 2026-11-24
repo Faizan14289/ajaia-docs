@@ -22,7 +22,7 @@ Browser (Next.js App Router + React 19 + Tiptap v3)
 Next.js Route Handlers (src/app/api/**)
    ├── Zod Request Validation (src/lib/validation.ts)
    ├── File Parsing & Validation (mammoth / marked / size & extension checks)
-   ├── Server-Side XSS Sanitization (sanitize-html allowlist)
+   ├── Server-Side XSS Sanitization (zero-dep allowlist HTML sanitizer)
    └── Auth Session Resolution (src/lib/auth.ts)
    │
    ▼
@@ -46,7 +46,7 @@ WorkspaceRepository Interface (src/lib/db/index.ts)
 | --- | --- | --- |
 | **Authentication** | Seeded accounts + `HttpOnly` cookie session switcher | Avoids spending 1–2 hours on password hashing/OAuth/email verification while keeping real server-side user identity and instant sharing QA. |
 | **Collaboration Model** | Debounced autosave (800 ms) + last-write-wins HTTP `PATCH` | Real-time CRDT sync (Yjs/Hocuspocus) requires WebSocket infrastructure and conflict UX beyond a 4–6h budget. Debounced save + explicit `Cmd/Ctrl+S` + retry state delivers dependable single-editor and async team editing. |
-| **Rich-Text Storage** | Sanitized HTML (`sanitize-html` allowlist) | Portable across Tiptap, `.md`/`.docx` imports, and future exports; strict allowlist eliminates stored XSS (`<script>`, `onerror`, `javascript:` URLs). |
+| **Rich-Text Storage** | Sanitized HTML (zero-dependency allowlist sanitizer) | Portable across Tiptap, `.md`/`.docx` imports, and future exports; strict tag/attribute allowlist eliminates stored XSS (`<script>`, `onerror`, `javascript:` URLs) with zero Node-version ESM friction on Serverless. |
 | **Attachment Storage** | Bounded (`5 MB`) base64 column in Postgres / local store | Works out of the box on stateless Vercel Serverless Functions without requiring reviewers to provision or pay for S3/R2 buckets. Clearly bounded in UI and API. |
 | **Database Driver** | Direct parameterized `pg` queries + auto-bootstrap DDL | Zero ORM binary-engine cold-start issues on Vercel Serverless or Node 25, full SQL clarity, and identical domain contracts across Postgres and file-store backends. |
 
