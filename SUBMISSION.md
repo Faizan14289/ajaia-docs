@@ -22,7 +22,10 @@
 
 - **Live URL:** https://ajaia-docs-murex-pi.vercel.app
 - **GitHub Repository:** https://github.com/Faizan14289/ajaia-docs
-- **Walkthrough Video:** See `WALKTHROUGH_VIDEO_URL.txt`
+- **Walkthrough Video (Loom — also in `WALKTHROUGH_VIDEO_URL.txt`):**
+  - Part 1: https://www.loom.com/share/7f3b308b2e154f138e6d85f33d89ca74
+  - Part 2: https://www.loom.com/share/d198306903e3465b80bbd286845b5104
+  - Part 3: https://www.loom.com/share/04180f48d06d47b1bbb615bdd1d336df
 - **No sign-up required:** Use the **Account Switcher** in the top-right header to switch between seeded team accounts with one click:
   - **Faizan Ali** (`faizan@ajaia.io`) — Default active user; owns 2 docs, Editor on 1 shared doc, Viewer on 1 shared doc
   - **Maya Lin** (`maya@ajaia.io`) — Owns *Design System & Typography Guidelines*; Editor on Faizan's *Q3 Launch Brief*
